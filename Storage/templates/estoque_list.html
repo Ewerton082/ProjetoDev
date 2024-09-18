@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Home do Estoque{% endblock %}
+
+{%block body %}
+    {% if food %}
+        {% for items in food %}
+            <div class="{{items.name}}">
+                <h1>{{items.brand}}, {{items.name}}, {{items.weight}} KG</h1>
+                <p>Valor de compra:{{items.buy_price}} | valor de venda:{{items.sell_price}}</p>
+                <p>QTD:{{items.quantity}}</p>
+                <img src="{{items.food_photo.url}}" alt="{{items.name}}, {{items.weight}}">
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
