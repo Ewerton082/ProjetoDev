@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Home do Estoque{% endblock %}
+
+{%block body %}
+    <form method="post">{% csrf_token %}
+        <h1>Tem certeza que deseja deletar essa ração?</h1>
+        <button type="submit">Deletar Ração</button>
+    </form>
+
+    <a href="{% url 'detail_estoque' object.pk %}">Voltar para o inicio</a>
+{% endblock %}

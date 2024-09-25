@@ -8,7 +8,7 @@
     <p>QTD:{{food.quantity}}</p>
     <img src="{{ food.food_photo.url }}" alt="{{food.name}}, {{food.weight}}", height="350", width="300">
     <br>
-    <form method="post" action="{% url 'update_food' food.id %}">{% csrf_token %}
+    <form method="post" action="{% url 'update_food_quantity' food.id %}">{% csrf_token %}
         <input type="hidden" name="item_id" value="{{ food.id }}">
         <input type="hidden" name="action_type" value="venda">
         <label for="amount_{{ item.id }}">Quantidade para venda:</label>
@@ -16,7 +16,7 @@
         <button type="submit" class="btn btn-danger p-1 m-0">Venda</button>
     </form>
 
-    <form method="POST" action="{% url 'update_food' food.id %}">{% csrf_token %}
+    <form method="POST" action="{% url 'update_food_quantity' food.id %}">{% csrf_token %}
         <input type="hidden" name="item_id" value="{{ food.id }}">
         <input type="hidden" name="action_type" value="compra">
         <label for="amount_{{ item.id }}">Quantidade para compra:</label>

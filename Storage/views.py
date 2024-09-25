@@ -1,7 +1,6 @@
-from django.forms import BaseModelForm
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from Storage.models import PetFoods
 from django.contrib import messages
 
@@ -31,6 +30,23 @@ class CreateFood(CreateView):
 
 class UpdateFood(UpdateView):
     model = PetFoods
+    fields = ['animal', 'brand', 'name', 'weight',
+              'buy_price', 'sell_price', 'quantity_alert',
+              'food_photo']
+    template_name = 'food_update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('detail_estoque', kwargs={'pk': self.object.pk})
+
+
+class DeleteFood(DeleteView):
+    model = PetFoods
+    template_name = "delete_food.html"
+    success_url = reverse_lazy('home_estoque')
+
+
+class UpdateFoodAmount(UpdateView):
+    model = PetFoods
     fields = []
 
     def form_valid(self, form):
@@ -46,14 +62,14 @@ class UpdateFood(UpdateView):
 
             else:
                 food_item.quantity -= quantity
-        
+
         if action == 'compra':
             food_item.quantity += quantity
-        
+
         food_item.save()
-        
+
         messages.success(self.request, "Dados salvos com sucesso")
         return redirect(self.get_success_url(food_item.pk))
-    
+
     def get_success_url(self, pk):
-        return reverse_lazy('detail_estoque', kwargs ={'pk':pk})
+        return reverse_lazy('detail_estoque', kwargs={'pk': pk})

@@ -9,7 +9,7 @@
                 <h1>{{items.pk}}, {{items.name}}, {{items.weight}} KG</h1>
                 <p>Valor de compra:{{items.buy_price}} | valor de venda:{{items.sell_price}}</p>
                 <p>QTD:{{items.quantity}}</p>
-                <img src="{{ items.food_photo.url }}" alt="{{items.name}}, {{items.weight}}", height="350", width="300">
+                <img src="{{ items.food_photo.url }}" alt="{{items.name}}, {{items.weight}}", height="150", width="150">
                 <br>
                 <a href="{% url 'detail_estoque' items.pk %}">Detalhes</a>
                 <hr>

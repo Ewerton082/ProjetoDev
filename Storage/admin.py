@@ -3,6 +3,7 @@ from Storage.models import BrandsFood, PetFoods
 
 # Register your models here.
 
+
 @admin.register(BrandsFood)
 class BrandsAdmin(admin.ModelAdmin):
     list_display = ("id", "brand")
