@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Home do Estoque{% endblock %}
+
+{%block body %}
+    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <button type="submit">Enviar dados</button>
+    </form>
+{% endblock %}

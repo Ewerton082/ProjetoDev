@@ -4,6 +4,8 @@ from django.db import models
 WEIGHT_FOODS = ((7.5, "7.5"), (10.1, "10.1"), (14.1, "14.1"), (15.1, "15.1"),
                 (18.1, "18.1"), (20.1, "20.1"), (25.1, "25.1"))
 
+ANIMAL_CHOICES = (("dog", "Cão"), ("cat", "Gato"))
+
 
 class BrandsFood(models.Model):
     id = models.AutoField(primary_key=True)
@@ -15,6 +17,7 @@ class BrandsFood(models.Model):
 
 class PetFoods(models.Model):
     id = models.AutoField(primary_key=True)
+    animal = models.CharField(choices=ANIMAL_CHOICES, max_length=5)
     brand = models.ForeignKey(to=BrandsFood, on_delete=models.PROTECT, related_name="brand_food")
     name = models.CharField(blank=False, max_length=500)
     weight = models.FloatField(choices=WEIGHT_FOODS)
