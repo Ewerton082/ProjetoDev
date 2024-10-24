@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from Storage.models import PetFoods
+from Storage.models import PetFoods, StorageTransitions
 from django.contrib import messages
 
 
@@ -62,14 +62,24 @@ class UpdateFoodAmount(UpdateView):
 
             else:
                 food_item.quantity -= quantity
+                self.create_transition('venda', food_item, quantity)
 
         if action == 'compra':
             food_item.quantity += quantity
+            self.create_transition('compra', food_item, quantity)
 
         food_item.save()
 
         messages.success(self.request, "Dados salvos com sucesso")
         return redirect(self.get_success_url(food_item.pk))
+    
+    def create_transition(self, action_type, food_item, quantity_item):
+        StorageTransitions.objects.create(
+            user=self.request.user,
+            food=food_item,
+            quantity = quantity_item,
+            action = action_type
+        )
 
     def get_success_url(self, pk):
         return reverse_lazy('detail_estoque', kwargs={'pk': pk})
