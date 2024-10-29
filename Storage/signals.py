@@ -7,7 +7,7 @@ from Storage.models import PetFoods, FoodInventory
 def CreateInventory():
     count = PetFoods.objects.aggregate(count=Sum('quantity'))['count']
     buy_all_value = PetFoods.objects.aggregate(buy_all_value=Sum(F('quantity') * F('buy_price')))['buy_all_value']
-    sel_all_value = PetFoods.objects.aggregate(sell_all_value=Sum(F('quantity') * F('sell_price')))['sell_all_value']
+    sel_all_value = PetFoods.objects.aggregate(sell_all_value=Sum(F('quantity') * F('sell_price_cred')))['sell_all_value']
 
     FoodInventory.objects.create(
         all_quantity=count,

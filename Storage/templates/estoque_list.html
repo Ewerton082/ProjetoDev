@@ -7,7 +7,7 @@
         {% for items in food %}
             <div class="{{items.name}}">
                 <h1>{{items.pk}}, {{items.name}}, {{items.weight}} KG</h1>
-                <p>Valor de compra:{{items.buy_price}} | valor de venda:{{items.sell_price}}</p>
+                <p>Valor de compra:{{items.buy_price}} | valor de venda Cartão:{{items.sell_price_cred}} Valor Venda Dinheiro: {{items.sell_price_dinh}}</p>
                 <p>QTD:{{items.quantity}}</p>
                 <img src="{{ items.food_photo.url }}" alt="{{items.name}}, {{items.weight}}", height="150", width="150">
                 <br>

@@ -12,7 +12,7 @@ class BrandsAdmin(admin.ModelAdmin):
 
 @admin.register(PetFoods)
 class FoodAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "weight", "quantity", "quantity_alert", "buy_price", "sell_price")
+    list_display = ("id", "name", "weight", "quantity", "quantity_alert", "buy_price", "sell_price_cred", "sell_price_dinh")
     search_fields = ('name', 'weight')
 
 

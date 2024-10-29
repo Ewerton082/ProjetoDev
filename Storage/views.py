@@ -31,7 +31,7 @@ class CreateFood(CreateView):
 class UpdateFood(UpdateView):
     model = PetFoods
     fields = ['animal', 'brand', 'name', 'weight',
-              'buy_price', 'sell_price', 'quantity_alert',
+              'buy_price', 'sell_price_cred', 'sell_price_dinh', 'quantity_alert',
               'food_photo']
     template_name = 'food_update.html'
 
