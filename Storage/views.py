@@ -72,13 +72,13 @@ class UpdateFoodAmount(UpdateView):
 
         messages.success(self.request, "Dados salvos com sucesso")
         return redirect(self.get_success_url(food_item.pk))
-    
+
     def create_transition(self, action_type, food_item, quantity_item):
         StorageTransitions.objects.create(
             user=self.request.user,
             food=food_item,
-            quantity = quantity_item,
-            action = action_type
+            quantity=quantity_item,
+            action=action_type
         )
 
     def get_success_url(self, pk):

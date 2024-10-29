@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Banhos Diarios{% endblock %}
+
+{%block body %}
+    <div class="commands" style="display: flex; margin: 15px 15px; justify-content: space-around;">
+        <a href="{% url 'novo'%}">Adicionar Pet</a>
+
+        <form action="{% url 'Diario' %}" method="get">
+            <label for="date_filter">Data:</label>
+            <input type="date" name="date_filter" id="date_filter">
+            <input type="submit" value="Filtrar Dados">
+        </form>
+        <form action="{% url 'Diario' %}" method="post">{% csrf_token %}
+            <select name="planos_mensais" id="planos_mensais" required>
+                <option value="">Selecione o Plano Mensal</option>
+                {% for plano in planos %}
+                    <option value="{{plano.id}}">{{plano.plan_onwer}} | {{plano.plan_pet}}</option>
+                {% endfor %}
+                <input type="submit" value="Adicionar Plano Mensal">
+            </select>
+        </form>
+    </div>
+    <table border="1" style="width: 100%;">
+        <tr>
+            <th>Data</th>
+            <th>Dono</th>
+            <th>Telefone</th>
+            <th>Pet</th>
+            <th>raça</th>
+            <th>Procedimento</th>
+            <th>Valor</th>
+        </tr>
+        {% if pets %}
+            {% for pet in pets %}
+                <tr>
+                    <td>{{pet.date}}</td>
+                    <td>{{pet.onwer}}</td>
+                    <td>{{pet.phone}}</td>
+                    <td>{{pet.pet}}</td>
+                    <td>{{pet.race}}</td>
+                    <td>{{pet.work.name}}</td>
+                    <td>{{pet.value}}</td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <td colspan="7"><h3>Não Houveram Pets Nesse Dia</h3></td>
+        {% endif%}
+
+    </table>
+{% endblock %}

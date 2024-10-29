@@ -54,5 +54,4 @@ class StorageTransitions(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.user.username} Realizou uma {self.action} de {self.quantity} {self.food.name} | {self.date}' 
-
+        return f'{self.user.username} Realizou uma {self.action} de {self.quantity} {self.food.name} | {self.date}'
