@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from Storage.models import PetFoods, StorageTransitions
+from Storage.models import PetFoods, StorageTransitions, BrandsFood
 from django.contrib import messages
 
 
@@ -24,6 +24,13 @@ class CreateFood(CreateView):
     template_name = "food_create.html"
     model = PetFoods
     template_name_suffix = 'food'
+    fields = "__all__"
+    success_url = "../"
+
+
+class CreateBrand(CreateView):
+    template_name = "brand_create.html"
+    model = BrandsFood
     fields = "__all__"
     success_url = "../"
 

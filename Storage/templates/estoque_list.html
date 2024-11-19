@@ -2,6 +2,12 @@
 
 {% block title %}Home do Estoque{% endblock %}
 
+{% block header %}
+<a href="{% url 'new_food' %}">Nova Ração</a>
+<a href="{% url 'new_brand' %}"> Nova Marca</a>
+<a href="{% url 'Diario' %}"> Tosa</a>
+{% endblock %}
+
 {%block body %}
     {% if food %}
         {% for items in food %}
