@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
 from Bath.models import AllPets, MonthlyPlans, StandartWorks
-from Bath.forms import DailyPets
+from Bath.forms import DailyPets, NewPlan
 import datetime
 # Create your views here.
 
@@ -52,5 +52,11 @@ class CreatePetDaily(CreateView):
     success_url = reverse_lazy('Diario')
     template_name = "novo_pet_diario.html"
 
+
+class CreateNewPlan(CreateView):
+    form_class = NewPlan
+    model = MonthlyPlans
+    success_url = reverse_lazy('Diario')
+    template_name = "novo_plano_pet.html"
     
     

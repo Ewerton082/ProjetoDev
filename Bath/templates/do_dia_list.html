@@ -5,6 +5,7 @@
 {%block body %}
     <div class="commands" style="display: flex; margin: 15px 15px; justify-content: space-around;">
         <a href="{% url 'novo'%}">Adicionar Pet</a>
+        <a href="{% url 'novo_plano' %}">Novo Plano</a>
 
         <form action="{% url 'Diario' %}" method="get">
             <label for="date_filter">Data:</label>
